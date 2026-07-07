@@ -256,3 +256,21 @@ docker rm mudasir
 docker rm -f mudasir 
 
 docker container prune 
+
+docker run -it --name mudasir ubuntu /bin/bash
+now inside it go to 
+cd tmp
+mkdir muzamil
+touch myfile
+cd ..
+exit
+
+then check the difference using 
+
+create the new image 
+docker commit mudasir updateimage
+docker images
+docker run -it --name muzamil updateimage /bin/bash
+now go to cd tmp
+then check the file there 
+
