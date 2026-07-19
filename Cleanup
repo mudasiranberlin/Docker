@@ -1,0 +1,163 @@
+# Docker Cleanup Commands
+
+## Overview
+
+This README explains basic Docker cleanup commands used to stop containers, remove containers, and delete Docker images from a system.
+
+These commands help clean unused Docker resources and free system storage.
+
+---
+
+# 1. Delete All Docker Images
+
+### Command:
+
+```bash
+docker rmi -f $(docker images -q)
+```
+
+### Description:
+
+This command removes all Docker images from the local Docker environment.
+
+### Explanation:
+
+* `docker images -q`
+
+  * Displays only the image IDs of all Docker images.
+
+* `docker rmi`
+
+  * Removes Docker images.
+
+* `-f`
+
+  * Forces the removal of images.
+
+### Example:
+
+```bash
+$ docker images
+
+REPOSITORY     IMAGE ID
+ubuntu         abc123
+project1       xyz456
+
+
+$ docker rmi -f $(docker images -q)
+```
+
+All Docker images will be deleted.
+
+---
+
+# 2. Stop All Docker Containers
+
+### Command:
+
+```bash
+docker stop $(docker ps -a -q)
+```
+
+### Description:
+
+This command stops all running Docker containers.
+
+### Explanation:
+
+* `docker ps -a -q`
+
+  * Lists all container IDs.
+
+* `docker stop`
+
+  * Stops running containers.
+
+### Example:
+
+```bash
+$ docker ps -a
+
+CONTAINER ID
+123456
+789101
+
+
+$ docker stop $(docker ps -a -q)
+```
+
+All running containers will be stopped.
+
+---
+
+# 3. Remove All Docker Containers
+
+### Command:
+
+```bash
+docker rm $(docker ps -a -q)
+```
+
+### Description:
+
+This command removes all stopped Docker containers from the system.
+
+### Explanation:
+
+* `docker ps -a -q`
+
+  * Gets all container IDs.
+
+* `docker rm`
+
+  * Deletes containers.
+
+### Example:
+
+```bash
+$ docker rm $(docker ps -a -q)
+```
+
+All containers will be removed.
+
+---
+
+# Complete Docker Cleanup Process
+
+Run these commands in order:
+
+### Step 1: Stop all containers
+
+```bash
+docker stop $(docker ps -a -q)
+```
+
+### Step 2: Remove all containers
+
+```bash
+docker rm $(docker ps -a -q)
+```
+
+### Step 3: Remove all images
+
+```bash
+docker rmi -f $(docker images -q)
+```
+
+---
+
+# Warning
+
+These commands will permanently delete:
+
+* All Docker containers
+* All Docker images
+* Docker application environments
+
+Use these commands carefully, especially on production systems.
+
+---
+
+# Author
+
+Anberlin
