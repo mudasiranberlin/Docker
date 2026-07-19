@@ -274,3 +274,10 @@ docker run -it --name muzamil updateimage /bin/bash
 now go to cd tmp
 then check the file there 
 
+
+# Delete the all docker images = docker rmi -f $(docker images -q)
+
+# docker stop $(docker pa -a -q)
+
+# docker rmi  $(docker pa -a -q)
+
